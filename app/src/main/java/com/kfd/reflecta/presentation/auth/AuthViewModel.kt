@@ -36,8 +36,7 @@ class AuthViewModel(
                 is ApiResult.Error -> {
                     _registerState.value = result
                 }
-
-                ApiResult.Loading -> TODO()
+                is ApiResult.Loading -> TODO()
             }
         }
     }

@@ -3,6 +3,7 @@ package com.kfd.reflecta.data.auth
 import com.kfd.reflecta.core.network.ApiResult
 import com.kfd.reflecta.data.auth.dto.AuthResponse
 import com.kfd.reflecta.data.auth.dto.LoginRequest
+import com.kfd.reflecta.data.auth.dto.RefreshRequest
 import com.kfd.reflecta.data.auth.dto.RegistrationRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

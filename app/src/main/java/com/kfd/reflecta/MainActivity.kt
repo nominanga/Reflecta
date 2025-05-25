@@ -9,37 +9,54 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.kfd.reflecta.core.datastore.TokenStore
+import com.kfd.reflecta.core.network.RetrofitClient
+import com.kfd.reflecta.data.auth.AuthRepository
+import com.kfd.reflecta.presentation.auth.AuthViewModel
 import com.kfd.reflecta.presentation.navigation.AppNavHost
+import com.kfd.reflecta.presentation.splash.SplashViewModel
 import com.kfd.reflecta.ui.theme.ReflectaTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             ReflectaTheme {
+                val tokenStore = remember { TokenStore(applicationContext) }
+                val authRepository = remember { AuthRepository(RetrofitClient.authApi) }
+
+                val splashViewModel = remember { SplashViewModel(tokenStore) }
+                val authViewModel = remember { AuthViewModel(authRepository, tokenStore) }
+
                 val navController = rememberNavController()
-                AppNavHost(navController = navController)
+                AppNavHost(
+                    navController,
+                    splashViewModel,
+                    authViewModel,
+                )
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ReflectaTheme {
-        Greeting("Android")
-    }
-}
+//@Composable
+//fun Greeting(name: String, modifier: Modifier = Modifier) {
+//    Text(
+//        text = "Hello $name!",
+//        modifier = modifier
+//    )
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    ReflectaTheme {
+//        Greeting("Android")
+//    }
+//}
