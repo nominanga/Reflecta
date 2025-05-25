@@ -1,4 +1,4 @@
-package com.kfd.reflecta.navigation
+package com.kfd.reflecta.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
