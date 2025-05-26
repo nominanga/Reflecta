@@ -3,19 +3,21 @@ package com.kfd.reflecta.presentation.splash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kfd.reflecta.core.datastore.TokenStore
+import com.kfd.reflecta.data.auth.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 sealed class SplashState {
-    object Loading : SplashState()
-    object Authenticated : SplashState()
-    object Unauthenticated : SplashState()
+    data object Loading : SplashState()
+    data object Authenticated : SplashState()
+    data object Unauthenticated : SplashState()
 }
 
 class SplashViewModel(
-    private val tokenStore: TokenStore
+    private val tokenStore: TokenStore,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<SplashState>(SplashState.Loading)

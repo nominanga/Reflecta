@@ -20,7 +20,9 @@ import com.kfd.reflecta.presentation.auth.AuthViewModel
 import com.kfd.reflecta.presentation.navigation.AppNavHost
 import com.kfd.reflecta.presentation.splash.SplashViewModel
 import com.kfd.reflecta.ui.theme.ReflectaTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,19 +46,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier
-//    )
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    ReflectaTheme {
-//        Greeting("Android")
-//    }
-//}

@@ -33,5 +33,16 @@ class AuthRepository(
         }
     }
 
+    suspend fun register(request: RefreshRequest) : ApiResult<AuthResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.refresh(request)
+                ApiResult.Success(response)
+            } catch (e: Exception) {
+                ApiResult.Error(e)
+            }
+        }
+    }
+
 
 }

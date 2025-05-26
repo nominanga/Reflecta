@@ -15,5 +15,5 @@ interface AuthApi {
     suspend fun register(@Body request: RegistrationRequest) : AuthResponse
 
     @POST("/api/auth/refresh")
-    suspend fun register(@Body request: RefreshRequest) : AuthResponse
+    suspend fun refresh(@Body request: RefreshRequest) : AuthResponse
 }
